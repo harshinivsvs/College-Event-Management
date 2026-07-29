@@ -1,0 +1,202 @@
+/* --- Core Styles (Vibrant Color Palette) --- */
+:root {
+  --brand-gradient: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #2563eb 100%);
+  --dark-bg: #0b1329;       /* Rich Deep Navy Background */
+  --card-bg: #1c2541;       /* Contrasting Charcoal Slate for Cards */
+  --text-main: #f8fafc;     /* Clear White for Titles */
+  --text-muted: #94a3b8;    /* Soft Lavender Gray for Subtext */
+  --border-color: #3a506b;
+  --radius-card: 20px;
+  --radius-input: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.events-page-container {
+  background-color: var(--dark-bg);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(37, 99, 235, 0.08) 0%, transparent 40%);
+  min-height: 100vh;
+  padding: 60px 24px;
+}
+
+/* --- Page Header Layout --- */
+.events-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.events-header h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  margin: 0 0 10px 0;
+}
+
+.events-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* --- Interactive Input Filters --- */
+.filter-wrapper {
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  display: flex;
+  gap: 12px;
+}
+
+.search-input, .category-select {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 14px 20px;
+  border-radius: var(--radius-input);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  outline: none;
+  transition: var(--transition);
+}
+
+.search-input { flex: 2; }
+.category-select { flex: 1; cursor: pointer; }
+
+.search-input:focus, .category-select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+}
+
+/* --- Display Grid System --- */
+.events-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Colorful Rich Card Elements --- */
+.event-display-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.event-display-card:hover {
+  transform: translateY(-6px);
+  border-color: #38bdf8;
+  box-shadow: 0 15px 30px rgba(56, 189, 248, 0.15);
+}
+
+.card-category-tag {
+  align-self: flex-start;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.event-display-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 8px 0;
+}
+
+.card-description {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.card-meta-info {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+  margin-bottom: 24px;
+}
+
+.card-meta-info p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  font-weight: 500;
+  margin: 8px 0;
+}
+
+/* --- Colored Actions Buttons --- */
+.card-actions-group {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-btn-primary {
+  background: var(--brand-gradient);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-input);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  transition: var(--transition);
+}
+
+.action-btn-primary:hover {
+  box-shadow: 0 6px 18px rgba(14, 165, 233, 0.5);
+  transform: translateY(-1px);
+}
+
+.management-sub-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn-sub {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: #cbd5e1;
+  padding: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-input);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.action-btn-sub.text-edit:hover {
+  background: rgba(22, 163, 74, 0.2);
+  color: #4ade80;
+  border-color: #22c55e;
+}
+
+.action-btn-sub.text-delete:hover {
+  background: rgba(220, 38, 38, 0.2);
+  color: #f87171;
+  border-color: #ef4444;
+}
+
+/* --- Responsive Layout Adjustments --- */
+@media (max-width: 640px) {
+  .filter-wrapper {
+    flex-direction: column;
+  }
+}

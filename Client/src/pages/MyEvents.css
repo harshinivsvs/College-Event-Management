@@ -1,0 +1,169 @@
+:root {
+  --dark-bg: #0b1329;
+  --card-bg: #1f2a4a;
+  --text-main: #ffffff;
+  --text-muted: #9db2d8;
+  --border: #3d5377;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: var(--dark-bg);
+}
+
+/* ===========================
+   PAGE
+=========================== */
+
+.my-events-page {
+  min-height: 100vh;
+  background: var(--dark-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 25px 80px;
+  box-sizing: border-box;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.my-events-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.my-events-header h1 {
+  color: white;
+  font-size: 60px;
+  font-weight: 800;
+  margin: 0 0 18px;
+}
+
+.my-events-header p {
+  color: var(--text-muted);
+  font-size: 24px;
+  margin: 0;
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.my-events-grid {
+  width: 100%;
+  max-width: 1200px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+
+  gap: 35px;
+}
+
+/* ===========================
+   EMPTY CARD
+=========================== */
+
+.empty-state-card {
+  width: 100%;
+  max-width: 700px;
+
+  margin: 20px auto 0;
+
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  padding: 85px 45px;
+
+  text-align: center;
+
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.empty-icon {
+  font-size: 72px;
+  margin-bottom: 25px;
+}
+
+.empty-state-card h3 {
+  color: white;
+  font-size: 42px;
+  margin: 0 0 18px;
+  font-weight: 700;
+}
+
+.empty-state-card p {
+  color: var(--text-muted);
+  font-size: 22px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ===========================
+   BROWSE BUTTON
+=========================== */
+
+.browse-btn {
+  margin-top: 45px;
+
+  padding: 28px 35px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.browse-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+
+  .my-events-page {
+    padding: 50px 15px;
+  }
+
+  .my-events-header {
+    margin-bottom: 50px;
+  }
+
+  .my-events-header h1 {
+    font-size: 30px;
+  }
+
+  .my-events-header p {
+    font-size: 18px;
+  }
+
+  .empty-state-card {
+    padding: 45px 25px;
+  }
+
+  .empty-icon {
+    font-size: 45px;
+  }
+
+  .empty-state-card h3 {
+    font-size: 24px;
+  }
+
+  .empty-state-card p {
+    font-size: 17px;
+  }
+}

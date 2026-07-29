@@ -1,0 +1,181 @@
+/* ============================
+   EVENT CARD
+============================ */
+
+.event-card {
+  width: 360px;
+  background: rgba(20, 35, 70, 0.95);
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(79, 142, 247, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  transition: 0.35s ease;
+  backdrop-filter: blur(12px);
+}
+
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(79, 142, 247, 0.35);
+}
+
+/* ============================
+   HEADER
+============================ */
+
+.event-header {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  padding: 22px;
+  text-align: center;
+}
+
+.event-header h2 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.category {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.18);
+  color: white;
+  padding: 9px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.category-icon {
+  color: #FFD54F;
+  font-size: 20px;
+}
+
+/* ============================
+   BODY
+============================ */
+
+.event-body {
+  padding: 22px;
+}
+
+.description {
+  color: #dbeafe;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  min-height: 70px;
+}
+
+/* ============================
+   DETAILS
+============================ */
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: white;
+  font-size: 15px;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(59,130,246,0.18);
+  color: #60a5fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+/* ============================
+   BUTTONS
+============================ */
+
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+}
+
+.button-group a {
+  text-decoration: none;
+}
+
+.button-group button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+/* View */
+
+.view-btn {
+  background: linear-gradient(135deg,#b78de1,#554172);
+}
+
+.view-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Edit */
+
+.edit-btn {
+  background: linear-gradient(135deg,#34314f,#8f76cd);
+}
+
+.edit-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Delete */
+
+.delete-btn {
+  background: linear-gradient(135deg,#322877,#534d97);
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Register */
+
+.register-btn {
+  background: linear-gradient(135deg,#7c3aed,#a855f7);
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ============================
+   MOBILE
+============================ */
+
+@media (max-width:768px){
+
+  .event-card{
+    width:100%;
+  }
+
+  .button-group{
+    grid-template-columns:1fr;
+  }
+
+}

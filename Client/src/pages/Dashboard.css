@@ -1,0 +1,188 @@
+/* --- Ecosystem Variable Alignment --- */
+:root {
+  --brand-gradient: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #2563eb 100%);
+  --dark-bg: #0b1329;       /* Deep Navy Canvas background */
+  --card-bg: #1c2541;       /* Contrasting Charcoal Slate box */
+  --text-main: #f8fafc;     /* Clear White text */
+  --text-muted: #94a3b8;    /* Soft Lavender Subtext */
+  --border-color: #3a506b;
+  --radius-card: 24px;
+  --radius-btn: 14px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dashboard-page {
+  background-color: var(--dark-bg);
+  background-image: 
+    radial-gradient(circle at 50% 10%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(37, 99, 235, 0.05) 0%, transparent 45%);
+  min-height: calc(100vh - 80px);
+  padding: 80px 24px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Main Layout Panel --- */
+.dashboard-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  width: 100%;
+  max-width: 800px;
+  padding: 50px 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Headers Block --- */
+.dashboard-header {
+  margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #38bdf8;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.dashboard-header h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.user-highlight {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- User Profile Info Blocks --- */
+.user-info-box {
+  background: rgba(11, 19, 41, 0.4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-btn);
+  display: flex;
+  padding: 24px;
+  margin-bottom: 40px;
+}
+
+.info-item {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.info-item.border-left {
+  border-left: 1px solid var(--border-color);
+  padding-left: 30px;
+}
+
+.info-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.role-badge {
+  color: #38bdf8;
+}
+
+/* --- Horizontal Separator Break --- */
+.actions-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin-bottom: 40px;
+}
+
+/* --- Navigation Cards Section --- */
+.quick-actions-section h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 24px 0;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.action-card-link {
+  text-decoration: none;
+  outline: none;
+}
+
+.action-card {
+  background: rgba(11, 19, 41, 0.3);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-btn);
+  padding: 28px 20px;
+  text-align: center;
+  height: 100%;
+  box-sizing: border-box;
+  transition: var(--transition);
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  background: rgba(11, 19, 41, 0.6);
+  border-color: #38bdf8;
+  box-shadow: 0 10px 20px rgba(56, 189, 248, 0.1);
+}
+
+.action-icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+}
+
+.action-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 8px 0;
+}
+
+.action-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 640px) {
+  .dashboard-container {
+    padding: 35px 20px;
+  }
+  .user-info-box {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .info-item.border-left {
+    border-left: none;
+    padding-left: 10px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+  }
+  .dashboard-header h2 {
+    font-size: 1.8rem;
+  }
+}
