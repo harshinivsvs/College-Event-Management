@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 // ================= REGISTER USER =================
 const registerUser = async (req, res) => {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
     try {
         const checkSql = "SELECT * FROM users WHERE email = ?";
@@ -13,12 +13,14 @@ const registerUser = async (req, res) => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({
+                    success: false,
                     message: "Database Error"
                 });
             }
 
             if (results.length > 0) {
                 return res.status(400).json({
+                    success: false,
                     message: "Email already exists"
                 });
             }
@@ -28,18 +30,21 @@ const registerUser = async (req, res) => {
             const insertSql =
                 "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
 
+            // Every new user is registered as a student
             db.query(
                 insertSql,
-                [name, email, hashedPassword, role || "student"],
+                [name, email, hashedPassword, "student"],
                 (err) => {
                     if (err) {
                         console.error(err);
                         return res.status(500).json({
+                            success: false,
                             message: "Registration Failed"
                         });
                     }
 
                     res.status(201).json({
+                        success: true,
                         message: "User Registered Successfully"
                     });
                 }
@@ -49,6 +54,7 @@ const registerUser = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({
+            success: false,
             message: "Server Error"
         });
     }
@@ -64,47 +70,42 @@ const loginUser = (req, res) => {
         if (err) {
             console.error(err);
             return res.status(500).json({
+                success: false,
                 message: "Database Error"
             });
         }
 
         if (results.length === 0) {
             return res.status(400).json({
+                success: false,
                 message: "Invalid Email or Password"
             });
         }
 
         const user = results[0];
-        console.log("User from DB:", user);
 
-        console.log("Password entered:", password);
-console.log("Hashed password:", user.password);
-
-        console.log("Password entered:", `"${password}"`);
-console.log("Stored hash:", user.password);
-
-const isMatch = await bcrypt.compare(password, user.password);
-
-console.log("Password Match:", isMatch);
+        const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
             return res.status(400).json({
+                success: false,
                 message: "Invalid Email or Password"
             });
         }
 
         const token = jwt.sign(
-    {
-        id: user.id,
-        role: user.role
-    },
-    process.env.JWT_SECRET,
-    {
-        expiresIn: "1d"
-    }
-);
+            {
+                id: user.id,
+                role: user.role
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "1d"
+            }
+        );
 
-        res.json({
+        res.status(200).json({
+            success: true,
             message: "Login Successful",
             token,
             user: {

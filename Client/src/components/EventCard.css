@@ -1,30 +1,29 @@
-/* ============================
+/* ==========================================
    EVENT CARD
-============================ */
+========================================== */
 
 .event-card {
   width: 360px;
-  background: rgba(20, 35, 70, 0.95);
-  border-radius: 22px;
+  background: #ffffff;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(79, 142, 247, 0.25);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-  transition: 0.35s ease;
-  backdrop-filter: blur(12px);
+  border: 1px solid #dbeafe;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+  transition: all 0.35s ease;
 }
 
 .event-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 45px rgba(79, 142, 247, 0.35);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.18);
 }
 
-/* ============================
+/* ==========================================
    HEADER
-============================ */
+========================================== */
 
 .event-header {
   background: linear-gradient(135deg, #2563eb, #3b82f6);
-  padding: 22px;
+  padding: 24px;
   text-align: center;
 }
 
@@ -32,75 +31,75 @@
   color: white;
   font-size: 24px;
   margin-bottom: 15px;
+  font-weight: 700;
 }
 
 .category {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(255,255,255,0.18);
-  color: white;
-  padding: 9px 18px;
+  gap: 8px;
+  padding: 8px 18px;
   border-radius: 30px;
+  background: rgba(255,255,255,.18);
+  color: white;
   font-size: 14px;
   font-weight: 600;
 }
 
 .category-icon {
-  color: #FFD54F;
-  font-size: 20px;
+  color: #fde047;
+  font-size: 18px;
 }
 
-/* ============================
+/* ==========================================
    BODY
-============================ */
+========================================== */
 
 .event-body {
-  padding: 22px;
+  padding: 24px;
 }
 
 .description {
-  color: #dbeafe;
-  font-size: 15px;
+  color: #64748b;
   line-height: 1.7;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
   min-height: 70px;
 }
 
-/* ============================
+/* ==========================================
    DETAILS
-============================ */
+========================================== */
 
 .details {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 
 .detail-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  color: white;
+  gap: 12px;
+  color: #334155;
   font-size: 15px;
 }
 
 .icon {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: rgba(59,130,246,0.18);
-  color: #60a5fa;
+  background: #eff6ff;
+  color: #2563eb;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
 }
 
-/* ============================
+/* ==========================================
    BUTTONS
-============================ */
+========================================== */
 
 .button-group {
   display: grid;
@@ -114,12 +113,11 @@
 
 .button-group button {
   width: 100%;
-  padding: 12px;
+  padding: 13px;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  color: white;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   transition: .3s;
 }
@@ -127,46 +125,54 @@
 /* View */
 
 .view-btn {
-  background: linear-gradient(135deg,#b78de1,#554172);
+  background: linear-gradient(135deg,#2563eb,#3b82f6);
+  color: white;
 }
 
 .view-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37,99,235,.25);
 }
 
 /* Edit */
 
 .edit-btn {
-  background: linear-gradient(135deg,#34314f,#8f76cd);
+  background: linear-gradient(135deg,#0ea5e9,#38bdf8);
+  color: white;
 }
 
 .edit-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(14,165,233,.25);
 }
 
 /* Delete */
 
 .delete-btn {
-  background: linear-gradient(135deg,#322877,#534d97);
+  background: linear-gradient(135deg,#475569,#334155);
+  color: white;
 }
 
 .delete-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(71,85,105,.25);
 }
 
 /* Register */
 
 .register-btn {
-  background: linear-gradient(135deg,#7c3aed,#a855f7);
+  background: linear-gradient(135deg,#4f46e5,#6366f1);
+  color: white;
 }
 
 .register-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(99,102,241,.25);
 }
 
-/* ============================
+/* ==========================================
    MOBILE
-============================ */
+========================================== */
 
 @media (max-width:768px){
 

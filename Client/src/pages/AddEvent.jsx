@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "./AddEvent.css";
@@ -6,13 +6,27 @@ import "./AddEvent.css";
 function AddEvent() {
   const navigate = useNavigate();
 
-  // FIXED: State keys now perfectly match input names
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
+    // Only Organizer can access
+    if (user.role !== "organizer") {
+      alert("Access Denied! Only Organizers can create events.");
+      navigate("/events");
+    }
+  }, [navigate]);
+
   const [event, setEvent] = useState({
     title: "",
     description: "",
     category: "",
     event_date: "",
-    venue: ""
+    venue: "",
   });
 
   const handleChange = (e) => {
@@ -24,32 +38,41 @@ function AddEvent() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       await API.post("/events", event);
+
       alert("Event Added Successfully!");
       navigate("/events");
     } catch (error) {
       console.error(error);
-      alert("Failed to add event");
+
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Failed to add event");
+      }
     }
   };
 
   return (
     <div className="add-event-page">
       <div className="add-event-container">
+
         <div className="form-header">
           <h1>Create New Event</h1>
           <p>Fill out the details below to launch your campus event.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="event-form">
+        <form className="event-form" onSubmit={handleSubmit}>
+
           <div className="input-group">
             <label>Event Title</label>
             <input
               type="text"
               name="title"
-              placeholder="e.g. Annual Hackathon 2026"
               value={event.title}
+              placeholder="Annual Hackathon 2026"
               onChange={handleChange}
               required
             />
@@ -57,6 +80,7 @@ function AddEvent() {
 
           <div className="input-group">
             <label>Category</label>
+
             <select
               name="category"
               value={event.category}
@@ -73,6 +97,7 @@ function AddEvent() {
           </div>
 
           <div className="form-row">
+
             <div className="input-group">
               <label>Date</label>
               <input
@@ -85,24 +110,26 @@ function AddEvent() {
             </div>
 
             <div className="input-group">
-              <label>Venue Location</label>
+              <label>Venue</label>
               <input
                 type="text"
                 name="venue"
-                placeholder="e.g. Main Auditorium"
                 value={event.venue}
+                placeholder="Main Auditorium"
                 onChange={handleChange}
                 required
               />
             </div>
+
           </div>
 
           <div className="input-group">
-            <label>Event Description</label>
+            <label>Description</label>
+
             <textarea
               name="description"
-              placeholder="Describe what your event is about, rules, and timelines..."
               value={event.description}
+              placeholder="Describe your event..."
               onChange={handleChange}
               required
             />
@@ -111,7 +138,9 @@ function AddEvent() {
           <button type="submit" className="submit-btn">
             🚀 Publish Event
           </button>
+
         </form>
+
       </div>
     </div>
   );

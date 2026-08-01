@@ -13,17 +13,21 @@ import EditEvent from "./pages/EditEvent";
 import Profile from "./pages/Profile";
 import MyEvents from "./pages/MyEvents";
 
-
 function App() {
   return (
     <>
       <Navbar />
 
       <Routes>
+
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/events" element={<ViewEvents />} />
+        <Route path="/events/:id" element={<EventDetails />} />
 
+        {/* Dashboard */}
         <Route
           path="/dashboard"
           element={
@@ -33,20 +37,27 @@ function App() {
           }
         />
 
-        <Route path="/events" element={<ViewEvents />} />
-        <Route path="/events/:id" element={<EventDetails />} />
-
+        {/* Organizer Only */}
         <Route
           path="/add-event"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute roles={["organizer"]}>
               <AddEvent />
             </ProtectedRoute>
           }
         />
 
-        <Route path="/edit-event/:id" element={<EditEvent />} />
+        {/* Organizer Only */}
+        <Route
+          path="/edit-event/:id"
+          element={
+            <ProtectedRoute roles={["organizer"]}>
+              <EditEvent />
+            </ProtectedRoute>
+          }
+        />
 
+        {/* Logged in Users */}
         <Route
           path="/profile"
           element={
@@ -64,6 +75,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
       </Routes>
     </>
   );

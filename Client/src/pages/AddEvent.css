@@ -1,125 +1,258 @@
-/* --- Ecosystem Variable Alignment --- */
-:root {
-  --brand-gradient: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #2563eb 100%);
-  --dark-bg: #0b1329;       /* Deep Navy Background */
-  --card-bg: #1c2541;       /* Contrasting Charcoal Slate for Form Container */
-  --text-main: #f8fafc;     /* Clear White for Text */
-  --text-muted: #94a3b8;    /* Soft Lavender Subtext */
-  --border-color: #3a506b;
-  --radius-card: 24px;
-  --radius-input: 12px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --primary-light:#60a5fa;
+
+    --background:#f3f6fb;
+    --card:#ffffff;
+
+    --text:#0f172a;
+    --text-light:#64748b;
+
+    --border:#dbe4f0;
+
+    --radius:18px;
+
+    --transition:.3s ease;
 }
 
-/* Ensure the entire page wrapper matches the dark theme */
-body {
-  background-color: var(--dark-bg);
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+/* ==========================
+   PAGE
+========================== */
+
+.add-event-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:50px 20px;
+
+    background:
+    linear-gradient(135deg,#eef4ff,#f8fbff);
+
 }
 
-/* --- Form Box Container --- */
-.add-event-container {
-  width: 100%;
-  max-width: 500px;
-  margin: 80px auto;
-  background: var(--card-bg);
-  padding: 40px 32px;
-  border-radius: var(--radius-card);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  box-sizing: border-box;
+/* ==========================
+   CONTAINER
+========================== */
+
+.add-event-container{
+
+    width:100%;
+
+    max-width:720px;
+
+    background:var(--card);
+
+    border-radius:24px;
+
+    padding:40px;
+
+    box-shadow:
+    0 20px 50px rgba(15,23,42,.12);
+
+    border:1px solid var(--border);
+
 }
 
-.add-event-container h1 {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 30px;
-  color: var(--text-main);
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+/* ==========================
+   HEADER
+========================== */
+
+.form-header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
 }
 
-/* --- Form Layout Structure --- */
-.event-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.form-header h1{
+
+    font-size:34px;
+
+    color:var(--text);
+
+    margin-bottom:10px;
+
+    font-weight:700;
+
 }
 
-/* --- Form Fields & Dropdowns --- */
+.form-header p{
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   FORM
+========================== */
+
+.event-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.input-group label{
+
+    margin-bottom:8px;
+
+    color:var(--text);
+
+    font-weight:600;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   ROW
+========================== */
+
+.form-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+/* ==========================
+   INPUTS
+========================== */
+
 .event-form input,
 .event-form select,
-.event-form textarea {
-  background-color: rgba(11, 19, 41, 0.4);
-  border: 1px solid var(--border-color);
-  padding: 14px 16px;
-  border-radius: var(--radius-input);
-  font-size: 0.95rem;
-  color: var(--text-main);
-  outline: none;
-  font-family: inherit;
-  transition: var(--transition);
-  box-sizing: border-box;
-  width: 100%;
+.event-form textarea{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:#f8fafc;
+
+    font-size:15px;
+
+    color:var(--text);
+
+    outline:none;
+
+    transition:var(--transition);
+
 }
 
-.event-form select {
-  cursor: pointer;
+.event-form textarea{
+
+    min-height:130px;
+
+    resize:vertical;
+
 }
 
-/* Styles option dropdown items inside the select element */
-.event-form select option {
-  background-color: var(--card-bg);
-  color: var(--text-main);
+.event-form input::placeholder,
+.event-form textarea::placeholder{
+
+    color:#94a3b8;
+
 }
 
-.event-form textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-/* Interactive Glowing Borders on Focus */
 .event-form input:focus,
 .event-form select:focus,
-.event-form textarea:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
-  background-color: rgba(11, 19, 41, 0.7);
+.event-form textarea:focus{
+
+    border-color:var(--primary);
+
+    background:white;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
 }
 
-/* Placeholder text color alignment */
-.event-form input::placeholder,
-.event-form textarea::placeholder {
-  color: var(--text-muted);
+/* ==========================
+   BUTTON
+========================== */
+
+.submit-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
 }
 
-/* --- Submission Button Styles --- */
-.event-form button {
-  background: var(--brand-gradient);
-  color: white;
-  border: none;
-  padding: 16px;
-  border-radius: var(--radius-input);
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 700;
-  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
-  transition: var(--transition);
-  margin-top: 8px;
+.submit-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.28);
+
 }
 
-.event-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.form-row{
+
+grid-template-columns:1fr;
+
 }
 
-/* --- Mobile View Support --- */
-@media (max-width: 550px) {
-  .add-event-container {
-    max-width: 90%;
-    margin: 40px auto;
-    padding: 30px 20px;
-  }
+.add-event-container{
+
+padding:25px;
+
+}
+
+.form-header h1{
+
+font-size:28px;
+
+}
+
 }

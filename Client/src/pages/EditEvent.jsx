@@ -7,16 +7,32 @@ function EditEvent() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // Role Protection
+  useEffect(() => {
+    if (!user) {
+      alert("Please login first!");
+      navigate("/login");
+      return;
+    }
+
+    if (user.role === "student") {
+      alert("Access Denied! Students cannot edit events.");
+      navigate("/events");
+      return;
+    }
+
+    fetchEvent();
+  }, []);
+
   const [event, setEvent] = useState({
     title: "",
     description: "",
     event_date: "",
     venue: "",
+    category: "",
   });
-
-  useEffect(() => {
-    fetchEvent();
-  }, []);
 
   const fetchEvent = async () => {
     try {
@@ -24,6 +40,7 @@ function EditEvent() {
       setEvent(response.data);
     } catch (error) {
       console.error(error);
+      alert("Failed to load event");
     }
   };
 
@@ -41,11 +58,15 @@ function EditEvent() {
       await API.put(`/events/${id}`, event);
 
       alert("Event Updated Successfully!");
-
       navigate("/events");
     } catch (error) {
       console.error(error);
-      alert("Failed to update event");
+
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Failed to update event");
+      }
     }
   };
 

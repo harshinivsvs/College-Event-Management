@@ -3,9 +3,12 @@ import "./Profile.css";
 function Profile() {
   const user = JSON.parse(localStorage.getItem("user"));
 
+  const handleEditProfile = () => {
+    alert("Edit Profile feature coming soon!");
+  };
+
   return (
     <div className="profile-page">
-
       <div className="profile-card">
 
         <p className="profile-tag">ACCOUNT DETAILS</p>
@@ -18,29 +21,33 @@ function Profile() {
 
           <div className="info-box">
             <p className="label">FULL NAME</p>
-            <h2>{user?.name}</h2>
+            <h2>{user?.name || "N/A"}</h2>
           </div>
 
           <div className="info-box">
             <p className="label">EMAIL</p>
-            <h2>{user?.email}</h2>
+            <h2>{user?.email || "N/A"}</h2>
           </div>
 
           <div className="info-box">
             <p className="label">ROLE</p>
-            <h2>{user?.role}</h2>
+            <h2 style={{ textTransform: "capitalize" }}>
+              {user?.role || "N/A"}
+            </h2>
           </div>
 
         </div>
 
         <div className="profile-footer">
-
-          <button>Edit Profile</button>
-
+          <button
+            className="edit-profile-btn"
+            onClick={handleEditProfile}
+          >
+            Edit Profile
+          </button>
         </div>
 
       </div>
-
     </div>
   );
 }

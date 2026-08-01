@@ -6,13 +6,13 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isLoggedIn = !!localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const role = user?.role;
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-
-    alert("Logged out successfully!");
     navigate("/login");
   };
 
@@ -24,6 +24,7 @@ function Navbar() {
       </div>
 
       <ul className="nav-links">
+
         <li>
           <Link
             className={location.pathname === "/" ? "active" : ""}
@@ -42,16 +43,28 @@ function Navbar() {
           </Link>
         </li>
 
-        {isLoggedIn && (
+        {token && (
           <>
             <li>
               <Link
-                className={location.pathname === "/add-event" ? "active" : ""}
-                to="/add-event"
+                className={location.pathname === "/dashboard" ? "active" : ""}
+                to="/dashboard"
               >
-                Add Event
+                Dashboard
               </Link>
             </li>
+
+            {/* Organizer Only */}
+            {role === "organizer" && (
+              <li>
+                <Link
+                  className={location.pathname === "/add-event" ? "active" : ""}
+                  to="/add-event"
+                >
+                  Add Event
+                </Link>
+              </li>
+            )}
 
             <li>
               <Link
@@ -59,15 +72,6 @@ function Navbar() {
                 to="/my-events"
               >
                 My Events
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                className={location.pathname === "/dashboard" ? "active" : ""}
-                to="/dashboard"
-              >
-                Dashboard
               </Link>
             </li>
 
@@ -82,7 +86,7 @@ function Navbar() {
           </>
         )}
 
-        {!isLoggedIn ? (
+        {!token ? (
           <>
             <li>
               <Link
@@ -109,6 +113,7 @@ function Navbar() {
             </button>
           </li>
         )}
+
       </ul>
     </nav>
   );

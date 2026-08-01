@@ -8,6 +8,10 @@ function ViewEvents() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
 
+  // Get logged-in user
+  const user = JSON.parse(localStorage.getItem("user"));
+  const role = user?.role;
+
   useEffect(() => {
     fetchEvents();
   }, []);
@@ -15,7 +19,6 @@ function ViewEvents() {
   const fetchEvents = async () => {
     try {
       const response = await API.get("/events");
-      console.log("Events:", response.data);
       setEvents(response.data);
     } catch (error) {
       console.error("Error:", error);
@@ -61,7 +64,12 @@ function ViewEvents() {
       <div className="events-grid">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
+            <EventCard
+              key={event.id}
+              event={event}
+              role={role}
+              currentUser={user}
+            />
           ))
         ) : (
           <p>No events found.</p>

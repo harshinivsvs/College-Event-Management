@@ -24,27 +24,37 @@ function Login() {
     try {
       const response = await API.post("/auth/login", user);
 
-      console.log("Response:", response.data);
-
       if (!response.data.token) {
         alert("No token received from backend");
         return;
       }
 
+      // Save Token
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      console.log("Token Saved:", localStorage.getItem("token"));
-      console.log("User Saved:", localStorage.getItem("user"));
+      // Save User
+      localStorage.setItem(
+        "user",
+        JSON.stringify(response.data.user)
+      );
+
+      const role = response.data.user.role;
 
       alert("Login Successful");
 
-      navigate("/dashboard");
+      // Redirect based on role
+      if (role === "admin") {
+        navigate("/dashboard");
+      } else if (role === "organizer") {
+        navigate("/dashboard");
+      } else {
+        navigate("/dashboard");
+      }
+
     } catch (error) {
       console.error(error);
 
       if (error.response) {
-        console.log("Backend Response:", error.response.data);
         alert(error.response.data.message);
       } else {
         alert("Cannot connect to backend.");

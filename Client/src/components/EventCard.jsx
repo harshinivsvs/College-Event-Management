@@ -16,7 +16,9 @@ import "./EventCard.css";
 import API from "../services/api";
 
 function EventCard({ event }) {
+
   const user = JSON.parse(localStorage.getItem("user"));
+  const role = user?.role;
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this event?")) return;
@@ -50,8 +52,6 @@ function EventCard({ event }) {
   const getCategoryIcon = (category) => {
     switch ((category || "").toLowerCase()) {
       case "technical":
-        return <FaLaptopCode className="category-icon" />;
-
       case "coding":
         return <FaLaptopCode className="category-icon" />;
 
@@ -97,61 +97,62 @@ function EventCard({ event }) {
 
           <div className="detail-item">
             <FaCalendarAlt className="icon" />
-            <span>
-              {new Date(event.event_date).toLocaleDateString()}
-            </span>
+            <span>{new Date(event.event_date).toLocaleDateString()}</span>
           </div>
 
           <div className="detail-item">
             <FaClock className="icon" />
-            <span>
-              {event.event_time || "10:00 AM"}
-            </span>
+            <span>{event.event_time || "10:00 AM"}</span>
           </div>
 
           <div className="detail-item">
             <FaMapMarkerAlt className="icon" />
-            <span>
-              {event.venue}
-            </span>
+            <span>{event.venue}</span>
           </div>
 
           <div className="detail-item">
             <FaUserTie className="icon" />
-            <span>
-              {event.organizer || "EventHub Team"}
-            </span>
+            <span>{event.organizer || "EventHub Team"}</span>
           </div>
 
         </div>
 
         <div className="button-group">
 
+          {/* Everyone */}
           <Link to={`/events/${event.id}`}>
             <button className="view-btn">
               View
             </button>
           </Link>
 
-          <Link to={`/edit-event/${event.id}`}>
-            <button className="edit-btn">
-              Edit
+          {/* Organizer Only */}
+          {role === "organizer" && (
+            <>
+              <Link to={`/edit-event/${event.id}`}>
+                <button className="edit-btn">
+                  Edit
+                </button>
+              </Link>
+
+              <button
+                className="delete-btn"
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+            </>
+          )}
+
+          {/* Student */}
+          {role === "student" && (
+            <button
+              className="register-btn"
+              onClick={handleRegister}
+            >
+              Register
             </button>
-          </Link>
-
-          <button
-            className="delete-btn"
-            onClick={handleDelete}
-          >
-            Delete
-          </button>
-
-          <button
-            className="register-btn"
-            onClick={handleRegister}
-          >
-            Register
-          </button>
+          )}
 
         </div>
 
