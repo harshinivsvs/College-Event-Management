@@ -12,6 +12,7 @@ import {
   FaClock,
   FaUserTie,
 } from "react-icons/fa";
+
 import "./EventCard.css";
 import API from "../services/api";
 
@@ -21,13 +22,13 @@ function EventCard({ event }) {
   const role = user?.role;
 
   const handleDelete = async () => {
-    if (!window.confirm("Are you sure you want to delete this event?")) return;
+    if (!window.confirm("Delete this event?")) return;
 
     try {
       await API.delete(`/events/${event.id}`);
-      alert("Event Deleted Successfully!");
+      alert("Event Deleted Successfully");
       window.location.reload();
-    } catch (error) {
+    } catch {
       alert("Failed to delete event");
     }
   };
@@ -53,105 +54,147 @@ function EventCard({ event }) {
     switch ((category || "").toLowerCase()) {
       case "technical":
       case "coding":
-        return <FaLaptopCode className="category-icon" />;
+        return <FaLaptopCode />;
 
       case "sports":
-        return <FaFutbol className="category-icon" />;
+        return <FaFutbol />;
 
       case "cultural":
-        return <FaMusic className="category-icon" />;
+        return <FaMusic />;
 
       case "workshop":
-        return <FaChalkboardTeacher className="category-icon" />;
+        return <FaChalkboardTeacher />;
 
       case "seminar":
-        return <FaMicrophone className="category-icon" />;
+        return <FaMicrophone />;
 
       case "hackathon":
-        return <FaRocket className="category-icon" />;
+        return <FaRocket />;
 
       default:
-        return <FaTag className="category-icon" />;
+        return <FaTag />;
     }
   };
 
   return (
+
     <div className="event-card">
 
-      <div className="event-header">
-        <h2>{event.title}</h2>
+      {/* Banner */}
 
-        <span className="category">
-          {getCategoryIcon(event.category)}
-          {event.category}
-        </span>
+      <div className="event-banner">
+
+        <div className="banner-content">
+
+          <h2>{event.title}</h2>
+
+          <span className="category">
+
+            {getCategoryIcon(event.category)}
+
+            {event.category || "General"}
+
+          </span>
+
+        </div>
+
       </div>
 
-      <div className="event-body">
+      {/* Body */}
+
+      <div className="event-content">
 
         <p className="description">
+
           {event.description}
+
         </p>
 
-        <div className="details">
+        <div className="event-meta">
 
-          <div className="detail-item">
-            <FaCalendarAlt className="icon" />
-            <span>{new Date(event.event_date).toLocaleDateString()}</span>
+          <div className="meta-row">
+
+            <FaCalendarAlt className="icon"/>
+
+            <span>
+
+              {new Date(event.event_date).toLocaleDateString(
+                "en-IN",
+                {
+                  day:"numeric",
+                  month:"long",
+                  year:"numeric",
+                }
+              )}
+
+            </span>
+
           </div>
 
-          <div className="detail-item">
-            <FaClock className="icon" />
+          <div className="meta-row">
+
+            <FaClock className="icon"/>
+
             <span>{event.event_time || "10:00 AM"}</span>
+
           </div>
 
-          <div className="detail-item">
-            <FaMapMarkerAlt className="icon" />
+          <div className="meta-row">
+
+            <FaMapMarkerAlt className="icon"/>
+
             <span>{event.venue}</span>
+
           </div>
 
-          <div className="detail-item">
-            <FaUserTie className="icon" />
+          <div className="meta-row">
+
+            <FaUserTie className="icon"/>
+
             <span>{event.organizer || "EventHub Team"}</span>
+
           </div>
 
         </div>
 
         <div className="button-group">
 
-          {/* Everyone */}
-          <Link to={`/events/${event.id}`}>
-            <button className="view-btn">
-              View
-            </button>
+          <Link
+            to={`/events/${event.id}`}
+            className="btn view-btn"
+          >
+            View Details
           </Link>
 
-          {/* Organizer Only */}
-          {role === "organizer" && (
-            <>
-              <Link to={`/edit-event/${event.id}`}>
-                <button className="edit-btn">
-                  Edit
-                </button>
-              </Link>
-
-              <button
-                className="delete-btn"
-                onClick={handleDelete}
-              >
-                Delete
-              </button>
-            </>
-          )}
-
-          {/* Student */}
           {role === "student" && (
+
             <button
-              className="register-btn"
+              className="btn register-btn"
               onClick={handleRegister}
             >
               Register
             </button>
+
+          )}
+
+          {role === "organizer" && (
+            <>
+
+              <Link
+                to={`/edit-event/${event.id}`}
+                className="btn edit-btn"
+              >
+                Edit
+              </Link>
+
+              <button
+                className="btn delete-btn"
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+
+            </>
           )}
 
         </div>
@@ -159,7 +202,9 @@ function EventCard({ event }) {
       </div>
 
     </div>
+
   );
+
 }
 
 export default EventCard;

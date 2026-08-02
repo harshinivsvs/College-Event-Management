@@ -29,47 +29,77 @@ function EventDetails() {
     );
   }
 
+  const formattedDate = new Date(event.event_date).toLocaleDateString(
+    "en-IN",
+    {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }
+  );
+
   return (
     <div className="details-container">
+
       <Link to="/events" className="back-link">
         ← Back to Events
       </Link>
 
       <div className="details-card">
-        {/* Left Side: Main Info */}
+
         <div className="details-main">
-          <span className="event-category-badge">Featured Event</span>
+
+          <span className="event-category-badge">
+            Featured Event
+          </span>
+
           <h1>{event.title}</h1>
-          
+
           <div className="details-section">
             <h3>About This Event</h3>
-            <p className="description">{event.description}</p>
+
+            <p className="description">
+              {event.description}
+            </p>
           </div>
+
         </div>
 
-        {/* Right Side: Quick Meta Details Box */}
         <div className="details-sidebar">
+
           <h3>Event Information</h3>
-          
+
           <div className="meta-item">
+
             <span className="meta-icon">📅</span>
+
             <div>
-              <label>Date & Time</label>
-              <p>{event.event_date}</p>
+              <label>Date</label>
+              <p>{formattedDate}</p>
             </div>
+
           </div>
 
           <div className="meta-item">
+
             <span className="meta-icon">📍</span>
+
             <div>
               <label>Venue</label>
               <p>{event.venue}</p>
             </div>
+
           </div>
 
-          <button className="register-btn">Register Now</button>
+          <button className="register-btn">
+            Register Now
+          </button>
+
         </div>
+
       </div>
+
     </div>
   );
 }

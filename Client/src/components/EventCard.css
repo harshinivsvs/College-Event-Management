@@ -2,186 +2,208 @@
    EVENT CARD
 ========================================== */
 
-.event-card {
-  width: 360px;
-  background: #ffffff;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid #dbeafe;
-  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
-  transition: all 0.35s ease;
+.event-card{
+    background:#ffffff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(37,99,235,.08);
+    border:1px solid #dbeafe;
+    transition:.35s ease;
+    display:flex;
+    flex-direction:column;
+    height:100%;
 }
 
-.event-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.18);
-}
-
-/* ==========================================
-   HEADER
-========================================== */
-
-.event-header {
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-  padding: 24px;
-  text-align: center;
-}
-
-.event-header h2 {
-  color: white;
-  font-size: 24px;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-.category {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
-  border-radius: 30px;
-  background: rgba(255,255,255,.18);
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.category-icon {
-  color: #fde047;
-  font-size: 18px;
+.event-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 40px rgba(37,99,235,.18);
 }
 
 /* ==========================================
-   BODY
+   BANNER
 ========================================== */
 
-.event-body {
-  padding: 24px;
+.event-banner{
+    height:130px;
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+    display:flex;
+    align-items:flex-end;
 }
 
-.description {
-  color: #64748b;
-  line-height: 1.7;
-  margin-bottom: 24px;
-  min-height: 70px;
+.banner-content{
+    width:100%;
+    padding:20px;
+    background:linear-gradient(to top,rgba(0,0,0,.18),transparent);
+}
+
+.banner-content h2{
+    color:white;
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:12px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.category{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 16px;
+    border-radius:30px;
+    background:rgba(255,255,255,.18);
+    color:white;
+    font-size:13px;
+    font-weight:600;
+    backdrop-filter:blur(8px);
+}
+
+.category svg{
+    font-size:15px;
 }
 
 /* ==========================================
-   DETAILS
+   CONTENT
 ========================================== */
 
-.details {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 24px;
+.event-content{
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
 }
 
-.detail-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #334155;
-  font-size: 15px;
+.description{
+    color:#64748b;
+    line-height:1.7;
+    font-size:15px;
+    min-height:70px;
+    margin-bottom:22px;
 }
 
-.icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #eff6ff;
-  color: #2563eb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
+/* ==========================================
+   META INFO
+========================================== */
+
+.event-meta{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-bottom:25px;
+}
+
+.meta-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#334155;
+    font-size:15px;
+}
+
+.icon{
+    width:36px;
+    height:36px;
+    background:#eff6ff;
+    color:#2563eb;
+    border-radius:50%;
+    padding:9px;
+    flex-shrink:0;
 }
 
 /* ==========================================
    BUTTONS
 ========================================== */
 
-.button-group {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 12px;
+.button-group{
+    margin-top:auto;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
-.button-group a {
-  text-decoration: none;
-}
-
-.button-group button {
-  width: 100%;
-  padding: 13px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: .3s;
+.btn{
+    flex:1;
+    min-width:120px;
+    text-align:center;
+    text-decoration:none;
+    padding:13px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
 }
 
 /* View */
 
-.view-btn {
-  background: linear-gradient(135deg,#2563eb,#3b82f6);
-  color: white;
+.view-btn{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:white;
 }
 
-.view-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(37,99,235,.25);
-}
-
-/* Edit */
-
-.edit-btn {
-  background: linear-gradient(135deg,#0ea5e9,#38bdf8);
-  color: white;
-}
-
-.edit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(14,165,233,.25);
-}
-
-/* Delete */
-
-.delete-btn {
-  background: linear-gradient(135deg,#475569,#334155);
-  color: white;
-}
-
-.delete-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(71,85,105,.25);
+.view-btn:hover{
+    background:linear-gradient(135deg,#1d4ed8,#2563eb);
+    transform:translateY(-2px);
 }
 
 /* Register */
 
-.register-btn {
-  background: linear-gradient(135deg,#4f46e5,#6366f1);
-  color: white;
+.register-btn{
+    background:linear-gradient(135deg,#3b82f6,#60a5fa);
+    color:white;
 }
 
-.register-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(99,102,241,.25);
+.register-btn:hover{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    transform:translateY(-2px);
+}
+
+/* Edit */
+
+.edit-btn{
+    background:linear-gradient(135deg,#1d4ed8,#2563eb);
+    color:white;
+}
+
+.edit-btn:hover{
+    background:linear-gradient(135deg,#1e40af,#1d4ed8);
+    transform:translateY(-2px);
+}
+
+/* Delete */
+
+.delete-btn{
+    background:linear-gradient(135deg,#64748b,#475569);
+    color:white;
+}
+
+.delete-btn:hover{
+    background:linear-gradient(135deg,#475569,#334155);
+    transform:translateY(-2px);
 }
 
 /* ==========================================
    MOBILE
 ========================================== */
 
-@media (max-width:768px){
+@media(max-width:768px){
 
-  .event-card{
+.event-card{
     width:100%;
-  }
+}
 
-  .button-group{
-    grid-template-columns:1fr;
-  }
+.banner-content h2{
+    font-size:20px;
+}
+
+.button-group{
+    flex-direction:column;
+}
+
+.btn{
+    width:100%;
+}
 
 }
